@@ -64,5 +64,6 @@ The following rules should be followed by any developer contributing to the proj
   * Since we are working on a collective project from scratch, there is going to be a lot of code written by different people (specially in the early stages), therefore we need to properly document the code so others can understand it and build upon it!
 
 ## Useful links regarding Firebase
-[Firebase starter example (includes auth, database, analytics, etc.)] (https://github.com/firebase/quickstart-android)
+* [Firebase starter example (includes auth, database, analytics, etc.)](https://github.com/firebase/quickstart-android)
+... ADD OTHER RESOURCES HERE
 
