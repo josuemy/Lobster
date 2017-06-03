@@ -65,6 +65,6 @@ The following rules should be followed by any developer contributing to the proj
 
 ## Useful links regarding Firebase
 * [Firebase starter example (includes auth, database, analytics, etc.)](https://github.com/firebase/quickstart-android)
-* [Firebase chat example] (more comprenhensible tutorial that uses auth, storage, etc.)](https://codelabs.developers.google.com/codelabs/firebase-android/index.html?index=..%2F..%2Findex#16)
+* [Firebase chat example (more comprenhensible tutorial that uses auth, storage, etc.)](https://codelabs.developers.google.com/codelabs/firebase-android/index.html?index=..%2F..%2Findex#16)
 * ... ADD OTHER RESOURCES HERE
 
