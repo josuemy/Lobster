@@ -3,30 +3,12 @@
 
     <item
         is-multidex="true"
-        jar="/Users/Josue/.android/build-cache/a04041a9476027061832f6beab0c2cd19bb02231/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="1395232a7eddc612029353b3c953cb0fced71076">
-        <dex dex="/Users/Josue/Desktop/Spring 17/CS190i/Lobster/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f85c44661133777838989b5a8f271529a020185a/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Users/Josue/Desktop/Spring 17/CS190i/Lobster/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="6d8ae3661a9994eae32bfd8f3968fc41c969e9b6">
+        sha1="dee0d226129e8482b3767c4a73b3332a357f16f3">
         <dex dex="/Users/Josue/Desktop/Spring 17/CS190i/Lobster/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_fb74a6ccf8bdd7823613603a3c0a79b32a5c9af5/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Josue/.android/build-cache/2be089114dca465d28ebaf9b5f83a6c9c96984c3/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="8f83a631abfdb790591a720e0cfb5f41329831c3">
-        <dex dex="/Users/Josue/Desktop/Spring 17/CS190i/Lobster/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_39cb416364f55dc4b42d45300ae92caa4e21c8f4/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -36,42 +18,6 @@
         revision="25.0.2"
         sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
         <dex dex="/Users/Josue/Desktop/Spring 17/CS190i/Lobster/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_2753a7893c706638dfd7fabf19bfb552f29b3401/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Josue/.android/build-cache/ba21569a99f6dedd7d1c51c11f3828174a6f071f/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="7b3eaf755284fb08a6d616a55fbb07dc3917d5e7">
-        <dex dex="/Users/Josue/Desktop/Spring 17/CS190i/Lobster/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_d6aeacbb6e9bf11562b4444dcc5d5c0a344f0fb0/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Josue/.android/build-cache/7904bb17e3bafb38ccfe1b9c31a5ab944ead914e/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d79c575e1d97b0298746a4c032a0c1dc201c2f82">
-        <dex dex="/Users/Josue/Desktop/Spring 17/CS190i/Lobster/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2d1328ae11a9dae94983d90b22716687040e272a/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Josue/.android/build-cache/8e16d8a5fccf53e292a467c07f3ff2600b529030/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="0a534044236cf81b002604643d23e7ca56bd1ee0">
-        <dex dex="/Users/Josue/Desktop/Spring 17/CS190i/Lobster/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_4afe60cc2b378b25472fbcedcc256b6b35d08a3f/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Josue/.android/build-cache/d07922252457305473ef88232eddc044762168c7/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="da832806828ba407284c0c4b1d87b8f9ed9f2520">
-        <dex dex="/Users/Josue/Desktop/Spring 17/CS190i/Lobster/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_ee0218f868aa4a2fd4b7819471941d14b7654aa0/classes.dex" />
     </item>
 
 </items>
