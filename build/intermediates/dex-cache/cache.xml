@@ -3,75 +3,264 @@
 
     <item
         is-multidex="true"
-        jar="/Users/Josue/.android/build-cache/a04041a9476027061832f6beab0c2cd19bb02231/output/jars/classes.jar"
+        jar="C:\Users\Danielle\.android\build-cache\73e7b0d7ad5f7a3a1b0ec330bf0e04c2b492104c\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7308fa2037dac339ea04b90cdd17e87f835ea294">
+        <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_037e8eea3cf8f7e0536c754ead00ae095b6659be\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Danielle\.android\build-cache\d932829262cb92b5dff95a3647e436e891902e49\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="1395232a7eddc612029353b3c953cb0fced71076">
-        <dex dex="/Users/Josue/Desktop/Spring 17/CS190i/Lobster/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f85c44661133777838989b5a8f271529a020185a/classes.dex" />
+        <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_c0fd0ddeded99fa8f9db6c3a84fa095d1515f4a9\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/Josue/Desktop/Spring 17/CS190i/Lobster/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jar="C:\Users\Danielle\.android\build-cache\bd718382b3ae2639c1dcfdf50eda5ea8b62f1734\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="6d8ae3661a9994eae32bfd8f3968fc41c969e9b6">
-        <dex dex="/Users/Josue/Desktop/Spring 17/CS190i/Lobster/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_fb74a6ccf8bdd7823613603a3c0a79b32a5c9af5/classes.dex" />
+        sha1="a319fd4d548ba4cc9511561d37109ba922bfbf6a">
+        <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_1f6f5ca88fe1901f719a7a429640fb9d1f06455d\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/Josue/.android/build-cache/2be089114dca465d28ebaf9b5f83a6c9c96984c3/output/jars/classes.jar"
+        jar="C:\Users\Danielle\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-applinks\1.4.0\8ad21bf21784dacce5f2043afb97218cc377e835\bolts-applinks-1.4.0.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="8f83a631abfdb790591a720e0cfb5f41329831c3">
-        <dex dex="/Users/Josue/Desktop/Spring 17/CS190i/Lobster/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_39cb416364f55dc4b42d45300ae92caa4e21c8f4/classes.dex" />
+        sha1="8ad21bf21784dacce5f2043afb97218cc377e835">
+        <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10\bolts-applinks-1.4.0_7bff9fa778fb56cc15cd3ca4e6350b28484129c5\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/Josue/Desktop/Spring 17/CS190i/Lobster/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jar="C:\Users\Danielle\.android\build-cache\f5819de027fc91d733ad62217724336ba31b4e52\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
-        <dex dex="/Users/Josue/Desktop/Spring 17/CS190i/Lobster/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_2753a7893c706638dfd7fabf19bfb552f29b3401/classes.dex" />
+        sha1="b831d3902674d096189451d46fce219e2c2904b7">
+        <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_4aa7fe68bf401f9914f8723a57acfbf3142f1b61\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/Josue/.android/build-cache/ba21569a99f6dedd7d1c51c11f3828174a6f071f/output/jars/classes.jar"
+        jar="C:\Users\Danielle\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-tasks\1.4.0\d85884acf6810a3bbbecb587f239005cbc846dc4\bolts-tasks-1.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10\bolts-tasks-1.4.0_88aeade49c6c7c96be559334e68e4582e5f2fea3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Danielle\.android\build-cache\4813987a764c5a88f46202337a94496e75f50709\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0558e5b6c171bd6719581340f9ac6be4af5ae265">
+        <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_00552c06d3b65b935a46ae024259e4ca40b25a8d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="12920f9016b8b05acbc2af7cdc13cef6946fe7d3">
+        <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_876e6268dd3c5b6be3092fcf5024c75e57acb34a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Danielle\.android\build-cache\376623e3f493b6e3a184dc44323d931666b77553\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c6047a34af07d6ec4e950ba1dc70ce23ac65ecaa">
+        <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ce3aad057c78060d60d01a2659388b32403d2c21\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Danielle\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.2.0\f7873a2ebde246a45c2a8d6f3247108b4c88a879\okhttp-3.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="f7873a2ebde246a45c2a8d6f3247108b4c88a879">
+        <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10\okhttp-3.2.0_1a5d67fdc588bc35d6a3882a49e2f146d76a9e73\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Danielle\.android\build-cache\7033941260089a2c886d1eab1fe7bdc7fe5a1eb0\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a10ed1f1cff990ef081263ad33f13dc6c207eb4e">
+        <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_2986ab0f0a22071920f351b61e233bdce88f8cdc\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Danielle\.android\build-cache\be45a3c04cb96c6cf7b49e8bf4a7a492c9e22d25\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="343ad59d9fb3bbf6ab99baafad859eb4b0fecc02">
+        <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_08d2c7eb4c1729cd0a922d6c2d694a028e71e2f6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b73e1f71aa2ee891969ed30620b152a229ca078f">
+        <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_5b920c9e1730b61c3d7f919bee1fdaaef69d0eda\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Danielle\.android\build-cache\f6d9d7140d386e2cca13b0eb2d6304e931a15ebf\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="7b3eaf755284fb08a6d616a55fbb07dc3917d5e7">
-        <dex dex="/Users/Josue/Desktop/Spring 17/CS190i/Lobster/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_d6aeacbb6e9bf11562b4444dcc5d5c0a344f0fb0/classes.dex" />
+        <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_064f1bbf58896c98c4acd22d3e51df1b45296937\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/Josue/.android/build-cache/7904bb17e3bafb38ccfe1b9c31a5ab944ead914e/output/jars/classes.jar"
+        jar="C:\Users\Danielle\.android\build-cache\6bb79de4b9a77d1d942e2eddedbd88baa3f3f7ae\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3f0a85e6000998ac322ddd50750e8cf91601a84b">
+        <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_1c5712b49a401bd2a544b2c59c5f19134f267226\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Danielle\.android\build-cache\8aba18b5bff343a2074e961daa6e5d11a46fcbdd\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="d79c575e1d97b0298746a4c032a0c1dc201c2f82">
-        <dex dex="/Users/Josue/Desktop/Spring 17/CS190i/Lobster/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2d1328ae11a9dae94983d90b22716687040e272a/classes.dex" />
+        <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_746224b7e1bd0412476af4d5771c4daa722027f9\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/Josue/.android/build-cache/8e16d8a5fccf53e292a467c07f3ff2600b529030/output/jars/classes.jar"
+        jar="C:\Users\Danielle\.gradle\caches\modules-2\files-2.1\com.twitter\twitter-text\1.13.0\78415b95ae3184c5926d593feab64bfc0b73b2dd\twitter-text-1.13.0.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="0a534044236cf81b002604643d23e7ca56bd1ee0">
-        <dex dex="/Users/Josue/Desktop/Spring 17/CS190i/Lobster/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_4afe60cc2b378b25472fbcedcc256b6b35d08a3f/classes.dex" />
+        sha1="78415b95ae3184c5926d593feab64bfc0b73b2dd">
+        <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10\twitter-text-1.13.0_cadc345696de6b62b12a66124e260484a5103307\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/Josue/.android/build-cache/d07922252457305473ef88232eddc044762168c7/output/jars/classes.jar"
+        jar="C:\Users\Danielle\.android\build-cache\51661a8d6da2b300c5558fbae993a35bf8e7ea37\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a8ae156c2726ac9c56daaf4b49452ec2cdb7bba9">
+        <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f3c69e686892b9bd80c984d8ebdb77cd85cc2ef6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Danielle\.android\build-cache\a508e23419a6028aff6cb29e102015aa0004767c\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="69e74a8b1cbf5b8ee0fc0cca6bab1ac6c45efef8">
+        <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_dbf0d67d3f9f3bc38abc292cffabe994af339402\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Danielle\.android\build-cache\93cc2b1ec439ecbc0bcfbced0925d985073bdbac\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="da832806828ba407284c0c4b1d87b8f9ed9f2520">
-        <dex dex="/Users/Josue/Desktop/Spring 17/CS190i/Lobster/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_ee0218f868aa4a2fd4b7819471941d14b7654aa0/classes.dex" />
+        <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_15b07827e8e1b7815b896d8ad0355fd1540601cc\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Danielle\.android\build-cache\62ec009ac11951ac00f699b35012e077e52564cf\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="900a290779cdb4eb2e63b6f7806fd9f30ce4f60d">
+        <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_0472021fae0442c3dcf78d1e1d8d76c9b48201f2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Danielle\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.6.1\b9d63507329a7178e026fc334f87587ee5070ac5\gson-2.6.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b9d63507329a7178e026fc334f87587ee5070ac5">
+        <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.6.1_946dbaf1ec81854e23567cd4ad254952eb7408be\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Danielle\.android\build-cache\c6f4ac4f69102e7d45efa5efa948588c4e9c9061\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4e01b82d664e1a8253b2b9658e74b5da35c8771d">
+        <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_fc2c1e30a3a212bea26ce826c4efbb4892ae57b3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Danielle\.android\build-cache\38c1cafedae7c122aaf2ebb40d6085ac04ea3daf\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="895c63ba9782b04f0c5da69205216f6ec87119eb">
+        <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f571be7bdf181f1554540f36e4811e108b81ecc7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Danielle\.android\build-cache\8a06d8b5c16792158c2cf5dccfaaffc1b19f1bf7\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0a534044236cf81b002604643d23e7ca56bd1ee0">
+        <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_a5c41691ae9b3a852b79868edded2abe1f39c944\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Danielle\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\retrofit\2.0.2\43eeae0b9fb087bb3194ba59ab63a38a32fbf3e\retrofit-2.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="043eeae0b9fb087bb3194ba59ab63a38a32fbf3e">
+        <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10\retrofit-2.0.2_b9a6e89293de57712533eafe437e55df826d9d38\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Danielle\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.6.0\98476622f10715998eacf9240d6b479f12c66143\okio-1.6.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="98476622f10715998eacf9240d6b479f12c66143">
+        <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10\okio-1.6.0_208a87b5fccd5e5b9a230b3be597a5ae36a67d81\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Danielle\.android\build-cache\828487c74d208e65e7242e46bc2b8f534a9ab316\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8f83a631abfdb790591a720e0cfb5f41329831c3">
+        <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_475480017b629e2edb26d6440db22d4d36950cab\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Danielle\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\converter-gson\2.0.2\f8d87f15b94b8d74e7ccf61d7eedb558811cdb30\converter-gson-2.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="f8d87f15b94b8d74e7ccf61d7eedb558811cdb30">
+        <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10\converter-gson-2.0.2_a5b9424b07d4c78c630ce69cd435c32449da72ee\classes.dex" />
     </item>
 
 </items>
