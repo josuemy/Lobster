@@ -144,6 +144,7 @@ public class AddEntryFragment extends DialogFragment {
             try {
                 bm = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), imageUri);
                 imageView = (ImageView) getView().findViewById(R.id.add_image_view);
+                imageView.setVisibility(View.VISIBLE);
                 imageView.setImageBitmap(bm);
             } catch (IOException e) {
                 System.err.println("Caught IOException: " + e.getMessage());
@@ -153,7 +154,7 @@ public class AddEntryFragment extends DialogFragment {
             File f = new File(mCurrentPhotoPath);
             Uri contentUri = Uri.fromFile(f);
             selectedImageUri = contentUri;
-            imageView = (ImageView) getView().findViewById(R.id.add_image_view);
+            imageView.setVisibility(View.VISIBLE);
             imageView.setImageURI(null);
             imageView.setImageURI(selectedImageUri);
 

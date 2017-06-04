@@ -34,6 +34,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         holder.person_name.setText(notes.get(position).person_name);
         String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
         holder.note_time.setText(currentDateTimeString);
+        holder.note_picture.setVisibility(View.VISIBLE);
         holder.note_picture.setImageBitmap(notes.get(position).picture);
         holder.note_category.setText(notes.get(position).category);
         Log.d("bindview", "inside on bind view holder");
