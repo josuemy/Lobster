@@ -84,11 +84,15 @@ public class AddEntryFragment extends DialogFragment {
         save_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("inside save", "Inside save button on click listener");
                 //(String name, String content, String time, Bitmap picture)
                 String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
                 Note new_note = new Note("Danielle", editText.getText().toString(), currentDateTimeString,
-                        ((BitmapDrawable)imageView.getDrawable()).getBitmap(), categoryView.getSelectedItem().toString());
-
+                        null, categoryView.getSelectedItem().toString());
+                if (imageView.getDrawable() != null) {
+                    new_note = new Note("Danielle", editText.getText().toString(), currentDateTimeString,
+                            ((BitmapDrawable) imageView.getDrawable()).getBitmap(), categoryView.getSelectedItem().toString());
+                }
                 MainActivity.getAdapter().add(new_note);
                 dismiss();
             }
