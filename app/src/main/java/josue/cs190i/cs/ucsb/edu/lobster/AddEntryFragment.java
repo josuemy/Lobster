@@ -2,6 +2,7 @@ package josue.cs190i.cs.ucsb.edu.lobster;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -15,11 +16,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,14 +36,27 @@ import static android.app.Activity.RESULT_OK;
 
 public class AddEntryFragment extends DialogFragment {
     public int SELECT_PICTURE = 1;
+    public int GALLERY_PICTURE = 0;
     Bitmap bm;
     String mCurrentPhotoPath;
+    Uri selectedImageUri;
+    Spinner categoryView;
+    Button button;
+    Button button_cam;
+    Button save_button;
+    EditText editText;
+    ImageView imageView;
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.create_note_fragment, container, false);
 
-        final Spinner categoryView = (Spinner) v.findViewById(R.id.spinner);
-        final Button button = (Button) v.findViewById(R.id.button);
+        categoryView = (Spinner) v.findViewById(R.id.spinner);
+        button = (Button) v.findViewById(R.id.button);
+        button_cam = (Button) v.findViewById(R.id.button2);
+        save_button = (Button) v.findViewById(R.id.save_button);
+        editText = (EditText) v.findViewById(R.id.editText);
+        imageView = (ImageView) v.findViewById(R.id.add_image_view);
 
         List<String> categories = new ArrayList<String>();
         categories.add("Daily Entry");
@@ -54,27 +70,54 @@ public class AddEntryFragment extends DialogFragment {
                 Intent pickIntent = new Intent();
                 pickIntent.setType("image/*");
                 pickIntent.setAction(Intent.ACTION_GET_CONTENT);
-                Intent takePhotoIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                File f = null;
-                try {
-                    f = createImageFile();
-                }
-                catch (IOException ex){}
+                startActivityForResult(pickIntent, GALLERY_PICTURE);
+            }
+            });
 
-                //takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
-
-                String pickTitle = "Select or take a new Picture"; // Or get from strings.xml
-                Intent chooserIntent = Intent.createChooser(pickIntent, pickTitle);
-                chooserIntent.putExtra
-                        (
-                                Intent.EXTRA_INITIAL_INTENTS,
-                                new Intent[]{takePhotoIntent}
-                        );
-                startActivityForResult(chooserIntent, SELECT_PICTURE);
+        button_cam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dispatchTakePictureIntent();
             }
         });
 
+        save_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //(String name, String content, String time, Bitmap picture)
+                String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+                Note new_note = new Note("Danielle", editText.getText().toString(), currentDateTimeString,
+                        ((BitmapDrawable)imageView.getDrawable()).getBitmap(), categoryView.getSelectedItem().toString());
+
+                MainActivity.getAdapter().add(new_note);
+                dismiss();
+            }
+        });
+
+
         return v;
+    }
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getContext().getPackageManager()) != null) {
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(getContext(),
+                        "josue.cs190i.cs.ucsb.edu.lobster",
+                        photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(takePictureIntent, SELECT_PICTURE);
+            }
+        }
     }
 
     public File createImageFile() throws IOException{
@@ -89,9 +132,6 @@ public class AddEntryFragment extends DialogFragment {
                 storageDir      /* directory */
         );
 
-        //catch(Exception ex){}
-
-        // Save a file: path for use with ACTION_VIEW intents
         mCurrentPhotoPath = image.getAbsolutePath();
         return image;
 
@@ -99,25 +139,23 @@ public class AddEntryFragment extends DialogFragment {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            if (data != null) {
-                Log.d("act result", "inside on activity result where data is not null");
-                    Uri imageUri = data.getData();
-                    try {
-                        bm = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), imageUri);
-                        ImageView imageView = (ImageView) getView().findViewById(R.id.add_image_view);
-                        imageView.setImageBitmap(bm);
-                    } catch (IOException e) {
-                        System.err.println("Caught IOException: " + e.getMessage());
-                    }
-
+        if(requestCode == GALLERY_PICTURE && resultCode == RESULT_OK){
+            Uri imageUri = data.getData();
+            try {
+                bm = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), imageUri);
+                imageView = (ImageView) getView().findViewById(R.id.add_image_view);
+                imageView.setImageBitmap(bm);
+            } catch (IOException e) {
+                System.err.println("Caught IOException: " + e.getMessage());
             }
-            else{
-                Bundle extras = data.getExtras();
-                Bitmap imageBitmap = (Bitmap) extras.get("data");
-                ImageView imageView = (ImageView) getView().findViewById(R.id.add_image_view);
-                imageView.setImageBitmap(imageBitmap);
-            }
+        }
+        if (requestCode == SELECT_PICTURE && resultCode == RESULT_OK) {
+            File f = new File(mCurrentPhotoPath);
+            Uri contentUri = Uri.fromFile(f);
+            selectedImageUri = contentUri;
+            imageView = (ImageView) getView().findViewById(R.id.add_image_view);
+            imageView.setImageURI(null);
+            imageView.setImageURI(selectedImageUri);
 
         }
 
