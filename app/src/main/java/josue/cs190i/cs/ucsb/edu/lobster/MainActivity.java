@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
         if (mFirebaseUser == null) {
-            // Not signed in, launch the Sign In activity
+            // Not signed in, launch the Sign In activity -- redirects to sign in activity if user is not signed in
             startActivity(new Intent(this, SignInActivity.class));
             finish();
             return;
@@ -151,6 +151,8 @@ public class MainActivity extends AppCompatActivity implements
         mLinearLayoutManager = new LinearLayoutManager(this);
         mLinearLayoutManager.setStackFromEnd(true);
 
+        //  This code initially adds all existing messages then listens for new child entries under the messages path in your Firebase Realtime Database.
+        //  It adds a new element to the UI for each message:
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
         mFirebaseAdapter = new FirebaseRecyclerAdapter<FriendlyMessage, MessageViewHolder>(
                 FriendlyMessage.class,
@@ -277,6 +279,12 @@ public class MainActivity extends AppCompatActivity implements
             public void afterTextChanged(Editable editable) {
             }
         });
+        // Creating an image message is done with these steps:
+        //   * Select image
+        //   * Handle image selection
+        //   * Write temporary image message to the RTDB (real time data base)
+        //   * Begin to upload selected image
+        //   * Update image message URL to that of the uploaded image, once upload is complete
 
         mAddMessageImageView = (ImageView) findViewById(R.id.addMessageImageView);
         mAddMessageImageView.setOnClickListener(new View.OnClickListener() {
@@ -295,20 +303,15 @@ public class MainActivity extends AppCompatActivity implements
             public void onClick(View view) {
                 FriendlyMessage friendlyMessage = new FriendlyMessage(mMessageEditText.getText().toString(), mUsername,
                         mPhotoUrl, null);
+                //  The push() method adds an automatically generated ID to the pushed object's path.
+                //  These IDs are sequential which ensures that the new messages will be added to the end of the list.
+
                 mFirebaseDatabaseReference.child(MESSAGES_CHILD).push().setValue(friendlyMessage);
                 mMessageEditText.setText("");
                 mFirebaseAnalytics.logEvent(MESSAGE_SENT_EVENT, null);
             }
         });
     }
-
-    private Action getMessageViewAction(FriendlyMessage friendlyMessage) {
-        return new Action.Builder(Action.Builder.VIEW_ACTION)
-                .setObject(friendlyMessage.getName(), MESSAGE_URL.concat(friendlyMessage.getId()))
-                .setMetadata(new Action.Metadata.Builder().setUpload(false))
-                .build();
-    }
-
 
 
     @Override
