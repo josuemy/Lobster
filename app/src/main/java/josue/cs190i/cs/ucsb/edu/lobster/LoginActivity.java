@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +46,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         findViewById(R.id.sign_in_button).setOnClickListener(this);
         findViewById(R.id.sign_out_button).setOnClickListener(this);
+
+        Button lobster_button = (Button) findViewById(R.id.lobster_button);
+
+        lobster_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
+                LoginActivity.this.startActivity(myIntent);
+            }
+        });
+
+        Button user_button = (Button) findViewById(R.id.user_button);
+        user_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(LoginActivity.this, UserListActivity.class);
+                LoginActivity.this.startActivity(myIntent);
+            }
+        });
     }
 
     @Override

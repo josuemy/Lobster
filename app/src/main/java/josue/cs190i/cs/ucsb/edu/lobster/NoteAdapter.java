@@ -36,9 +36,11 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         holder.person_name.setText(notes.get(position).person_name);
         String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
         holder.note_time.setText(currentDateTimeString);
-        if(holder.note_picture.getDrawable() != null)
-            holder.note_picture.setVisibility(View.VISIBLE);
+
         holder.note_picture.setImageBitmap(notes.get(position).picture);
+        if(holder.note_picture.getDrawable() != null){
+            holder.note_picture.setVisibility(View.VISIBLE);
+        }
         holder.note_category.setText(notes.get(position).category);
 
 
@@ -68,7 +70,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
             person_name = (TextView) view.findViewById(R.id.person_name);
             note_content = (TextView) view.findViewById(R.id.note_content);
             note_picture = (ImageView) view.findViewById(R.id.note_picture);
-            note_category= (TextView) view.findViewById(R.id.note_category);
+            note_category = (TextView) view.findViewById(R.id.note_category);
             note_time = (TextView) view.findViewById(R.id.note_date_time);
 
         }

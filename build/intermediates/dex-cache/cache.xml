@@ -3,6 +3,24 @@
 
     <item
         is-multidex="true"
+        jar="C:\Users\Danielle\.android\build-cache\4674c08c9f60548f681217fc7876d0cfe67bc05c\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="de24d8023e8da79f30bee46b298f606e5e758432">
+        <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_d5ab0c519ce2df61017dad1c902601608fdca708\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Danielle\.android\build-cache\d34e185f5d812d6301bfc72c954bfdc93d3619b7\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5c1f80f62ccad560edcd6609fc75f385cf7cb45a">
+        <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ac9512e6f631366378b3c78a25e7f34ee5350103\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
@@ -16,7 +34,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="d82b7f21312d0ba93399c781ff5d8be8215c7f5d">
+        sha1="4c5503d8be752992f6023cefc134b8ba066c9a3d">
         <dex dex="C:\Users\Danielle\AndroidStudioProjects\Lobster Git\Lobster\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_5b920c9e1730b61c3d7f919bee1fdaaef69d0eda\classes.dex" />
     </item>
 
