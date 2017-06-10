@@ -7,17 +7,47 @@ import android.graphics.Bitmap;
  */
 
 public class Note {
-    String person_name;
-    String content;
-    String time;
-    String category;
-    Bitmap picture;
 
-    public Note(String name, String content, String time, Bitmap picture, String category){
+    private String person_name;
+    private String content;
+    private String time;
+    private String category;
+
+    private String pictureUrl;
+
+    public Note(String name, String content, String time, String pictureUrl, String category){
         this.person_name = name;
         this.content = content;
         this.time = time;
-        this.picture = picture;
+        this.pictureUrl = pictureUrl;
         this.category = category;
     }
+
+    public Note(){}
+
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
+    }
+
+    public String getPerson_name() {
+        return person_name;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
+
+
 }

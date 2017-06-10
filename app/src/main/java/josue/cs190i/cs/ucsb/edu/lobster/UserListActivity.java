@@ -67,13 +67,6 @@ public class UserListActivity extends AppCompatActivity {
                     }
 
                     FirebaseDatabase.getInstance().getReference()
-                            .child(ROOMS)
-                            .child(roomName)
-                            .child(MESSAGES)
-                            .push()
-                            .setValue("Welcome" + StartingActivity.mUsername);
-
-                    FirebaseDatabase.getInstance().getReference()
                             .child(USER_LIST)
                             .child(StartingActivity.firebaseUserUid)
                             .child("roomKey")
