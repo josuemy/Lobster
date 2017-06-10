@@ -7,8 +7,17 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="dee0d226129e8482b3767c4a73b3332a357f16f3">
+        sha1="03fc4b106f132f59e5fdcfd79e3d59df0df4cb33">
         <dex dex="/Users/Josue/Desktop/Spring 17/CS190i/Lobster/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_fb74a6ccf8bdd7823613603a3c0a79b32a5c9af5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Josue/.android/build-cache/1b9797e821bf99823aeb3254f5bab3274fd47258/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3a1bac2cc31df44dbf1f9bbf2c675319503c9271">
+        <dex dex="/Users/Josue/Desktop/Spring 17/CS190i/Lobster/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_55e59fe55ab6b2f129453cc9721478326c8393f8/classes.dex" />
     </item>
     <item
         is-multidex="true"
