@@ -6,4 +6,9 @@
     <color name="colorTitle">#ffffff</color>
     <color name="grey_100">#F5F5F5</color>
     <color name="grey_300">#838080</color>
+
+    <color name="odd">#eee</color>
+    <color name="even">#fff</color>
+    <color name="devider">#ccc</color>
+
 </resources>
