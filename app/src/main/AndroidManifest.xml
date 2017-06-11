@@ -71,11 +71,11 @@
 
         <activity
             android:name=".UserListActivity"
-            android:label="UserListActivity"
+            android:label="Pick Your Lobster"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".MainActivity"
-            android:label="MainActivity"
+            android:label="Lobster Notes"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
     </application>
