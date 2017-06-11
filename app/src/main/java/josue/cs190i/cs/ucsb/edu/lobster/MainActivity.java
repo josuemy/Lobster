@@ -285,7 +285,8 @@ public class MainActivity extends AppCompatActivity implements
                 mFirebaseUser = null;
                 startActivity(new Intent(this, SignInActivity.class));
                 return true;
-
+            case R.id.new_lobster:
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
