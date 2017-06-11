@@ -24,8 +24,8 @@
 
     <TextView
         android:id="@+id/person_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="29dp"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -38,10 +38,9 @@
 
     <TextView
         android:id="@+id/note_content"
-        android:layout_width="82dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:textSize="15sp"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
         android:paddingLeft="34dp"
@@ -49,7 +48,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/note_category" />
+        app:layout_constraintTop_toBottomOf="@+id/person_name" />
 
     <ImageView
         android:id="@+id/note_picture"
