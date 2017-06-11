@@ -157,14 +157,14 @@ public class MainActivity extends AppCompatActivity implements
                         protected void populateViewHolder(final MainActivity.NoteViewHolder viewHolder,
                                                           Note note, int position) {
 
-                            if (note.getUserPhotoUrl() == null) {
-                                viewHolder.userImageView.setImageDrawable(ContextCompat.getDrawable(MainActivity.this,
-                                        R.drawable.ic_account_circle_black_36dp));
-                            } else {
-                                Glide.with(MainActivity.this)
-                                        .load(note.getUserPhotoUrl())
-                                        .into(viewHolder.userImageView);
-                            }
+//                            if (note.getUserPhotoUrl() == null) {
+//                                viewHolder.userImageView.setImageDrawable(ContextCompat.getDrawable(MainActivity.this,
+//                                        R.drawable.ic_account_circle_black_36dp));
+//                            } else {
+//                                Glide.with(MainActivity.this)
+//                                        .load(note.getUserPhotoUrl())
+//                                        .into(viewHolder.userImageView);
+//                            }
 
                             if (note.getContent() != null) {
                                 Log.d("populcate content", "viewholder content" + note.getContent());
@@ -175,6 +175,7 @@ public class MainActivity extends AppCompatActivity implements
                                 viewHolder.note_time.setText(note.getTime());
                                 viewHolder.note_picture.setVisibility(View.GONE);
                                 viewHolder.note_key.setText(note.getNoteKey());
+
                             }
 
                             if(note.getPictureUrl() != null){
@@ -226,10 +227,6 @@ public class MainActivity extends AppCompatActivity implements
                         }
                     });
 
-                    //mMessageRecyclerView.setAdapter(mFirebaseAdapter);
-
-
-
                     return true;
                 case R.id.navigation_dashboard:
                     Log.d("you", "pressed you");
@@ -245,14 +242,14 @@ public class MainActivity extends AppCompatActivity implements
                         protected void populateViewHolder(final MainActivity.NoteViewHolder viewHolder,
                                                           Note note, int position) {
 
-                            if (note.getUserPhotoUrl() == null) {
-                                viewHolder.userImageView.setImageDrawable(ContextCompat.getDrawable(MainActivity.this,
-                                        R.drawable.ic_account_circle_black_36dp));
-                            } else {
-                                Glide.with(MainActivity.this)
-                                        .load(note.getUserPhotoUrl())
-                                        .into(viewHolder.userImageView);
-                            }
+//                            if (note.getUserPhotoUrl() == null) {
+//                                viewHolder.userImageView.setImageDrawable(ContextCompat.getDrawable(MainActivity.this,
+//                                        R.drawable.ic_account_circle_black_36dp));
+//                            } else {
+//                                Glide.with(MainActivity.this)
+//                                        .load(note.getUserPhotoUrl())
+//                                        .into(viewHolder.userImageView);
+//                            }
 
                             if (note.getPerson_name().equals(StartingActivity.mUsername)) {
                                 viewHolder.note_content.setText(note.getContent());
@@ -297,6 +294,7 @@ public class MainActivity extends AppCompatActivity implements
                                 viewHolder.note_time.setVisibility(View.GONE);
                                 viewHolder.note_picture.setVisibility(View.GONE);
                                 viewHolder.note_key.setVisibility(View.GONE);
+                                viewHolder.userImageView.setVisibility(View.GONE);
                             }
                             Log.d("before", "before on button listener");
                            // buttonListener.onButton();
@@ -336,14 +334,14 @@ public class MainActivity extends AppCompatActivity implements
                         @Override
                         protected void populateViewHolder(final MainActivity.NoteViewHolder viewHolder,
                                                           Note note, int position) {
-                            if (note.getUserPhotoUrl() == null) {
-                                viewHolder.userImageView.setImageDrawable(ContextCompat.getDrawable(MainActivity.this,
-                                        R.drawable.ic_account_circle_black_36dp));
-                            } else {
-                                Glide.with(MainActivity.this)
-                                        .load(note.getUserPhotoUrl())
-                                        .into(viewHolder.userImageView);
-                            }
+//                            if (note.getUserPhotoUrl() == null) {
+//                                viewHolder.userImageView.setImageDrawable(ContextCompat.getDrawable(MainActivity.this,
+//                                        R.drawable.ic_account_circle_black_36dp));
+//                            } else {
+//                                Glide.with(MainActivity.this)
+//                                        .load(note.getUserPhotoUrl())
+//                                        .into(viewHolder.userImageView);
+//                            }
                             if (!note.getPerson_name().equals(StartingActivity.mUsername)) {
                                 viewHolder.note_content.setText(note.getContent());
                                 viewHolder.person_name.setText(note.getPerson_name());
@@ -387,6 +385,7 @@ public class MainActivity extends AppCompatActivity implements
                                 viewHolder.note_time.setVisibility(View.GONE);
                                 viewHolder.note_picture.setVisibility(View.GONE);
                                 viewHolder.note_key.setVisibility(View.GONE);
+                                viewHolder.userImageView.setVisibility(View.GONE);
                             }
 
                         }};
@@ -422,6 +421,7 @@ public class MainActivity extends AppCompatActivity implements
     public interface OnReadyListener {
         public void onReady();
     }
+
 
     public interface OnButtonListener{
         public void onButton();
@@ -460,6 +460,8 @@ public class MainActivity extends AppCompatActivity implements
         mMessageRecyclerView = (RecyclerView) findViewById(R.id.main_recycler_view);
         mLinearLayoutManager = new LinearLayoutManager(this);
         mLinearLayoutManager.setStackFromEnd(false);
+
+
 
         buttonListener = new OnButtonListener() {
             @Override
@@ -603,6 +605,11 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.about:
+                Log.d("about", "about was clicked");
+                Intent intent = new Intent(MainActivity.this, About.class);
+                startActivity(intent);
+                return true;
             case R.id.sign_out_menu:
                 mFirebaseAuth.signOut();
                 Auth.GoogleSignInApi.signOut(mGoogleApiClient);
@@ -615,8 +622,8 @@ public class MainActivity extends AppCompatActivity implements
                         .child(mFirebaseUser.getUid())
                         .child("roomKey")
                         .setValue(null);
-                Intent intent = new Intent(MainActivity.this, StartingActivity.class);
-                startActivity(intent);
+                Intent intent2 = new Intent(MainActivity.this, StartingActivity.class);
+                startActivity(intent2);
                 return true;
 
             default:

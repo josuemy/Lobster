@@ -9,14 +9,13 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
-        
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/lobster_icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="josue.cs190i.cs.ucsb.edu.lobster"
@@ -34,24 +33,24 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name="josue.cs190i.cs.ucsb.edu.lobster.StartingActivity">
+        <activity android:name=".StartingActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="friendlychat.firebase.google.com"
-                    android:scheme="http"
                     android:pathPrefix="/message"
-                    />
+                    android:scheme="http" />
             </intent-filter>
         </activity>
-
         <activity android:name=".SignInActivity" />
 
         <service
@@ -61,7 +60,6 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
         <service
             android:name=".MyFirebaseInstanceIdService"
             android:exported="false">
@@ -73,14 +71,17 @@
         <activity
             android:name=".UserListActivity"
             android:label="Pick Your Lobster"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:label="Lobster Notes"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
-        <receiver android:name="josue.cs190i.cs.ucsb.edu.lobster.DailyNotificationReceiver" />
+        <receiver android:name=".DailyNotificationReceiver" />
 
+        <activity android:name=".About"
+            android:label="About">
+        </activity>
     </application>
 
 </manifest>
