@@ -110,37 +110,56 @@ public class StartingActivity extends AppCompatActivity implements
     private Button mSendButton;
     private RecyclerView mMessageRecyclerView;
     private LinearLayoutManager mLinearLayoutManager;
-    private FirebaseRecyclerAdapter<FriendlyMessage, MessageViewHolder> mFirebaseAdapter;
     private ProgressBar mProgressBar;
-    private DatabaseReference mFirebaseDatabaseReference;
+
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
-    private FirebaseAnalytics mFirebaseAnalytics;
-    private EditText mMessageEditText;
-    private ImageView mAddMessageImageView;
+
 
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
     public GoogleApiClient mGoogleApiClient;
     public static String firebaseUserUid;
 
+
     public DatabaseReference mFirebaseDatabase;
 
     public void addUser() {
-        User user = new User("", mUsername);
-        FirebaseDatabase.getInstance().getReference()
-                .child("users")
-                .child(firebaseUserUid)
-                .setValue(user);
 
-        Intent intent = new Intent(this, UserListActivity.class);
-        StartingActivity.this.startActivity(intent);
+        mFirebaseDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                if (snapshot.child("users").hasChild(mFirebaseUser.getUid())) {
+                    Log.d("user", "user does exist!");
+                    Intent intent = new Intent(StartingActivity.this, UserListActivity.class);
+                    StartingActivity.this.startActivity(intent);
+
+                }
+                else{
+                    Log.d("user", "user does not exists");
+                    User user = new User(null, mUsername);
+                    FirebaseDatabase.getInstance().getReference()
+                            .child("users")
+                            .child(firebaseUserUid)
+                            .setValue(user);
+                }
+                Intent intent = new Intent(StartingActivity.this, UserListActivity.class);
+                StartingActivity.this.startActivity(intent);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-
+        mFirebaseDatabase = FirebaseDatabase.getInstance().getReference();
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mUsername = ANONYMOUS;
 
@@ -210,47 +229,13 @@ public class StartingActivity extends AppCompatActivity implements
         }
     }
 
-    private void causeCrash() {
-        throw new NullPointerException("Fake null pointer exception");
-    }
-
-
-    // Fetch the config to determine the allowed length of messages.
-    public void fetchConfig() {
-
-        long cacheExpiration = 3600; // 1 hour in seconds
-        // If developer mode is enabled reduce cacheExpiration to 0 so that each fetch goes to the
-        // server. This should not be used in release builds.
-        if (mFirebaseRemoteConfig.getInfo().getConfigSettings().isDeveloperModeEnabled()) {
-            cacheExpiration = 0;
-        }
-        mFirebaseRemoteConfig.fetch(cacheExpiration)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        // Make the fetched config available via FirebaseRemoteConfig get<type> calls.
-                        mFirebaseRemoteConfig.activateFetched();
-                        applyRetrievedLengthLimit();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        // There has been an error fetching the config
-                        Log.w(TAG, "Error fetching config", e);
-                        applyRetrievedLengthLimit();
-                    }
-                });
-    }
-
-
     /**
      * Apply retrieved length limit to edit text field. This result may be fresh from the server or it may be from
      * cached values.
      */
     private void applyRetrievedLengthLimit() {
         Long friendly_msg_length = mFirebaseRemoteConfig.getLong("friendly_msg_length");
-        mMessageEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(friendly_msg_length.intValue())});
+        //mMessageEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(friendly_msg_length.intValue())});
         Log.d(TAG, "FML is: " + friendly_msg_length);
     }
 

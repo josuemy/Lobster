@@ -60,6 +60,7 @@ public class UserListActivity extends AppCompatActivity implements GoogleApiClie
     private GoogleApiClient mGoogleApiClient;
 
     public static String roomName;
+    String room;
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
@@ -121,6 +122,30 @@ public class UserListActivity extends AppCompatActivity implements GoogleApiClie
                 .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API)
                 .build();
+        mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
+        room = null;
+        Log.d("current user", "id" + mFirebaseUser.getUid());
+        mFirebaseDatabaseReference.child("users").child(mFirebaseUser.getUid()).addListenerForSingleValueEvent(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        if (snapshot.hasChild("roomKey")){
+
+                            User user = snapshot.getValue(User.class);
+                            room = user.getRoomKey();
+                            Log.d("room", "current room" + room);
+                            roomName = room;
+                            Intent intent = new Intent(UserListActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            }
+                        }
+
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
 
 
         mLinearLayoutManager = new LinearLayoutManager(this);
@@ -128,10 +153,9 @@ public class UserListActivity extends AppCompatActivity implements GoogleApiClie
 
 
 
-        fireBase = FirebaseDatabase.getInstance().getReference();
-        getAllUsersFromFirebase();
 
-        mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
+
+
         mFirebaseAdapter = new FirebaseRecyclerAdapter<User, UserViewHolder>(
                 User.class,
                 R.layout.recycler_user_single_item,
@@ -171,35 +195,6 @@ public class UserListActivity extends AppCompatActivity implements GoogleApiClie
         setSupportActionBar(toolbar);
 
 
-    }
-    public void getAllUsersFromFirebase() {
-        Log.d("firebase", "getting all users from firebase");
-        fireBase.child("users")
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        Iterator<DataSnapshot> dataSnapshots = dataSnapshot.getChildren()
-                                .iterator();
-                        users = new ArrayList<>();
-                        while (dataSnapshots.hasNext()) {
-                            DataSnapshot dataSnapshotChild = dataSnapshots.next();
-                            User user = dataSnapshotChild.getValue(User.class);
-                            Log.d("user",  "this is a user" + user.name);
-                            if (!TextUtils.equals(user.name,
-                                    FirebaseAuth.getInstance().getCurrentUser().getUid())) {
-                                users.add(user.name);
-                                Log.d("users", "current user " + user.name);
-                            }
-                        }
-                        // All users are retrieved except the one who is currently logged
-                        // in device.
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        // Unable to retrieve the users.
-                    }
-                });
     }
 
     @Override
