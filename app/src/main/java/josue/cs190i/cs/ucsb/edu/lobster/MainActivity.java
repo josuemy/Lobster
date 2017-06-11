@@ -49,6 +49,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class MainActivity extends AppCompatActivity implements
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements
         TextView note_category;
         TextView note_key;
         ImageView note_picture;
+        CircleImageView userImageView;
 
         public NoteViewHolder(View view) {
             super(view);
@@ -89,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements
             note_category = (TextView) view.findViewById(R.id.note_category);
             note_time = (TextView) view.findViewById(R.id.note_date_time);
             note_key = (TextView) view.findViewById(R.id.note_key);
+            userImageView = (CircleImageView) view.findViewById(R.id.profileImage);
 
             view.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -205,6 +208,15 @@ public class MainActivity extends AppCompatActivity implements
                     @Override
                     protected void populateViewHolder(final MainActivity.NoteViewHolder viewHolder,
                                                       Note note, int position) {
+                        if (note.getUserPhotoUrl() == null) {
+                            viewHolder.userImageView.setImageDrawable(ContextCompat.getDrawable(MainActivity.this,
+                                    R.drawable.ic_account_circle_black_36dp));
+                        } else {
+                            Glide.with(MainActivity.this)
+                                    .load(note.getUserPhotoUrl())
+                                    .into(viewHolder.userImageView);
+                        }
+
                         if (note.getContent() != null) {
                             Log.d("populcate content", "viewholder content" + note.getContent());
 
@@ -306,9 +318,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
 
-
-
-            @Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);

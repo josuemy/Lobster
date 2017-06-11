@@ -14,6 +14,7 @@ public class Note {
     private String category;
     private String noteKey;
     private String pictureUrl;
+    private String userPhotoUrl;
 
     public Note(String name, String content, String time, String pictureUrl, String category){
         this.person_name = name;
@@ -24,6 +25,14 @@ public class Note {
     }
 
     public Note(){}
+
+    public String getUserPhotoUrl() {
+        return userPhotoUrl;
+    }
+
+    public void setUserPhotoUrl(String userPhotoUrl) {
+        this.userPhotoUrl = userPhotoUrl;
+    }
 
     public void setNoteKey(String noteKey) {
         this.noteKey = noteKey;
