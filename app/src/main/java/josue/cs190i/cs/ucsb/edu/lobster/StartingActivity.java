@@ -90,27 +90,71 @@ public class StartingActivity extends AppCompatActivity implements
 
     public static String mUsername;
 
+<<<<<<< HEAD
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
     public GoogleApiClient mGoogleApiClient;
     public static String firebaseUserUid;
 
+=======
+    private Button mSendButton;
+    private RecyclerView mMessageRecyclerView;
+    private LinearLayoutManager mLinearLayoutManager;
+    private ProgressBar mProgressBar;
+
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
+
+
+    private FirebaseRemoteConfig mFirebaseRemoteConfig;
+    public GoogleApiClient mGoogleApiClient;
+    public static String firebaseUserUid;
+
+
+    public DatabaseReference mFirebaseDatabase;
+>>>>>>> master
 
     public void addUser() {
-        User user = new User("", mUsername);
-        FirebaseDatabase.getInstance().getReference()
-                .child("users")
-                .child(firebaseUserUid)
-                .setValue(user);
 
-        Intent intent = new Intent(this, UserListActivity.class);
-        StartingActivity.this.startActivity(intent);
+        mFirebaseDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                if (snapshot.child("users").hasChild(mFirebaseUser.getUid())) {
+                    Log.d("user", "user does exist!");
+                    Intent intent = new Intent(StartingActivity.this, UserListActivity.class);
+                    StartingActivity.this.startActivity(intent);
+
+                }
+                else{
+                    Log.d("user", "user does not exists");
+                    User user = new User(null, mUsername);
+                    FirebaseDatabase.getInstance().getReference()
+                            .child("users")
+                            .child(firebaseUserUid)
+                            .setValue(user);
+                }
+                Intent intent = new Intent(StartingActivity.this, UserListActivity.class);
+                StartingActivity.this.startActivity(intent);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
+<<<<<<< HEAD
+=======
+        mFirebaseDatabase = FirebaseDatabase.getInstance().getReference();
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+>>>>>>> master
         mUsername = ANONYMOUS;
 
         // Initialize Firebase Auth
@@ -159,6 +203,40 @@ public class StartingActivity extends AppCompatActivity implements
     }
 
     @Override
+<<<<<<< HEAD
+=======
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.sign_out_menu:
+                Log.d("sign out", "before firebase sign out");
+                mFirebaseAuth.signOut();
+                Log.d("sign out", "before google sign out");
+                Auth.GoogleSignInApi.signOut(mGoogleApiClient);
+                mFirebaseUser = null;
+                mUsername = ANONYMOUS;
+                mPhotoUrl = null;
+                Log.d("sign out", "before intent sign in");
+                startActivity(new Intent(this, SignInActivity.class));
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    /**
+     * Apply retrieved length limit to edit text field. This result may be fresh from the server or it may be from
+     * cached values.
+     */
+    private void applyRetrievedLengthLimit() {
+        Long friendly_msg_length = mFirebaseRemoteConfig.getLong("friendly_msg_length");
+        //mMessageEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(friendly_msg_length.intValue())});
+        Log.d(TAG, "FML is: " + friendly_msg_length);
+    }
+
+    @Override
+>>>>>>> master
     public void onConnectionFailed(ConnectionResult connectionResult) {
         Log.d(TAG, "onConnectionFailed:" + connectionResult);
     }
