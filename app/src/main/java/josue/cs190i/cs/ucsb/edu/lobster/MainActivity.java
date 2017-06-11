@@ -286,6 +286,14 @@ public class MainActivity extends AppCompatActivity implements
                 startActivity(new Intent(this, SignInActivity.class));
                 return true;
             case R.id.new_lobster:
+                FirebaseDatabase.getInstance().getReference()
+                        .child("users")
+                        .child(mFirebaseUser.getUid())
+                        .child("roomKey")
+                        .setValue(null);
+                Intent intent = new Intent(MainActivity.this, StartingActivity.class);
+                startActivity(intent);
+                return true;
 
             default:
                 return super.onOptionsItemSelected(item);
