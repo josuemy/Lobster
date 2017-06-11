@@ -23,6 +23,8 @@ import android.widget.Spinner;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -64,6 +66,10 @@ public class AddEntryFragment extends DialogFragment {
     private static final String ROOMKEY_CHILD = UserListActivity.roomName;
     private static final String MESSAGES_CHILD = "messages";
     private static final String LOADING_IMAGE_URL = "http://i.imgur.com/DDA1om1.gifv";
+    private String mUserPhotoUrl;
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
+
     public AddEntryFragment(){}
     public AddEntryFragment(MainActivity mainActivity){
         this.mainActivity = mainActivity;
@@ -81,6 +87,13 @@ public class AddEntryFragment extends DialogFragment {
         imageView = (ImageView) v.findViewById(R.id.add_image_view);
 
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+
+        if (mFirebaseUser.getPhotoUrl() != null) {
+            mUserPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
+        }
+
 
         List<String> categories = new ArrayList<String>();
         categories.add("Daily Entry");
@@ -113,8 +126,9 @@ public class AddEntryFragment extends DialogFragment {
                 String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
                  new_note = new Note(StartingActivity.mUsername, editText.getText().toString(), currentDateTimeString,
                         null, categoryView.getSelectedItem().toString());
-                if (imageView.getDrawable() != null) {
+                new_note.setUserPhotoUrl(mUserPhotoUrl);
 
+                if (imageView.getDrawable() != null) {
                     new_note.setPictureUrl(LOADING_IMAGE_URL);
                     new_note.setNoteKey(mFirebaseDatabaseReference.child(ROOM_CHILD).child(ROOMKEY_CHILD).child(MESSAGES_CHILD).push().getKey());
                     mFirebaseDatabaseReference.child(ROOM_CHILD).child(ROOMKEY_CHILD).child(MESSAGES_CHILD).child(new_note.getNoteKey())
