@@ -66,7 +66,8 @@ public class MainActivity extends AppCompatActivity implements
     private static String ROOMKEY_CHILD = UserListActivity.roomName;
     private static final String MESSAGES_CHILD = "messages";
     private OnReadyListener readyListener;
-    boolean isReady;
+    private OnButtonListener buttonListener;
+
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
@@ -132,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements
         alert.show();
     }
 
-    private TextView mTextMessage;
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -140,15 +141,248 @@ public class MainActivity extends AppCompatActivity implements
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+                    Log.d("home", "home pressed");
+                    mMessageRecyclerView.getRecycledViewPool().clear();
+                    mFirebaseAdapter = new FirebaseRecyclerAdapter<Note, NoteViewHolder>(
+                            Note.class,
+                            R.layout.recycler_note_single_item,
+                            MainActivity.NoteViewHolder.class,
+                            mFirebaseDatabaseReference.child(ROOM_CHILD).child(ROOMKEY_CHILD).child(MESSAGES_CHILD)) {
+
+
+                        @Override
+                        protected void populateViewHolder(final MainActivity.NoteViewHolder viewHolder,
+                                                          Note note, int position) {
+                            if (note.getContent() != null) {
+                                Log.d("populcate content", "viewholder content" + note.getContent());
+
+                                viewHolder.note_content.setText(note.getContent());
+                                viewHolder.person_name.setText(note.getPerson_name());
+                                viewHolder.note_category.setText(note.getCategory());
+                                viewHolder.note_time.setText(note.getTime());
+                                viewHolder.note_picture.setVisibility(View.GONE);
+                                viewHolder.note_key.setText(note.getNoteKey());
+                            }
+
+                            if(note.getPictureUrl() != null){
+                                viewHolder.note_picture.setVisibility(ImageView.VISIBLE);
+                                String imageUrl = note.getPictureUrl();
+                                if (imageUrl.startsWith("gs://")) {
+                                    StorageReference storageReference = FirebaseStorage.getInstance()
+                                            .getReferenceFromUrl(imageUrl);
+                                    storageReference.getDownloadUrl().addOnCompleteListener(
+                                            new OnCompleteListener<Uri>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Uri> task) {
+                                                    if (task.isSuccessful()) {
+                                                        String downloadUrl = task.getResult().toString();
+                                                        Glide.with(viewHolder.note_picture.getContext())
+                                                                .load(downloadUrl)
+                                                                .into(viewHolder.note_picture);
+                                                    } else {
+                                                        Log.w("TAG", "Getting download url was not successful.",
+                                                                task.getException());
+                                                    }
+                                                }
+                                            });
+                                } else {
+                                    Glide.with(viewHolder.note_picture.getContext())
+                                            .load(note.getPictureUrl())
+                                            .into(viewHolder.note_picture);
+                                }
+
+                            }
+                            Log.d("before", "before on button listener");
+                           // buttonListener.onButton();
+                        }
+                    };
+
+                    mFirebaseAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+                        @Override
+                        public void onItemRangeInserted(int positionStart, int itemCount) {
+                            super.onItemRangeInserted(positionStart, itemCount);
+                            int friendlyMessageCount = mFirebaseAdapter.getItemCount();
+                            int lastVisiblePosition = mLinearLayoutManager.findLastCompletelyVisibleItemPosition();
+                            // If the recycler view is initially being loaded or the user is at the bottom of the list, scroll
+                            // to the bottom of the list to show the newly added message.
+                            if (lastVisiblePosition == -1 ||
+                                    (positionStart >= (friendlyMessageCount - 1) && lastVisiblePosition == (positionStart - 1))) {
+                                mMessageRecyclerView.scrollToPosition(positionStart);
+                            }
+                            buttonListener.onButton();
+                        }
+                    });
+
+                    //mMessageRecyclerView.setAdapter(mFirebaseAdapter);
+
+
+
                     return true;
                 case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
+                    Log.d("you", "pressed you");
+                    mMessageRecyclerView.getRecycledViewPool().clear();
+                    mFirebaseAdapter = new FirebaseRecyclerAdapter<Note, NoteViewHolder>(
+                            Note.class,
+                            R.layout.recycler_note_single_item,
+                            MainActivity.NoteViewHolder.class,
+                            mFirebaseDatabaseReference.child(ROOM_CHILD).child(ROOMKEY_CHILD).child(MESSAGES_CHILD)) {
+
+
+                        @Override
+                        protected void populateViewHolder(final MainActivity.NoteViewHolder viewHolder,
+                                                          Note note, int position) {
+                            if (note.getPerson_name().equals(StartingActivity.mUsername)) {
+                                viewHolder.note_content.setText(note.getContent());
+                                viewHolder.person_name.setText(note.getPerson_name());
+                                viewHolder.note_category.setText(note.getCategory());
+                                viewHolder.note_time.setText(note.getTime());
+                                viewHolder.note_picture.setVisibility(View.GONE);
+                                viewHolder.note_key.setText(note.getNoteKey());
+                                if (note.getPictureUrl() != null) {
+                                    viewHolder.note_picture.setVisibility(ImageView.VISIBLE);
+                                    String imageUrl = note.getPictureUrl();
+                                    if (imageUrl.startsWith("gs://")) {
+                                        StorageReference storageReference = FirebaseStorage.getInstance()
+                                                .getReferenceFromUrl(imageUrl);
+                                        storageReference.getDownloadUrl().addOnCompleteListener(
+                                                new OnCompleteListener<Uri>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Uri> task) {
+                                                        if (task.isSuccessful()) {
+                                                            String downloadUrl = task.getResult().toString();
+                                                            Glide.with(viewHolder.note_picture.getContext())
+                                                                    .load(downloadUrl)
+                                                                    .into(viewHolder.note_picture);
+                                                        } else {
+                                                            Log.w("TAG", "Getting download url was not successful.",
+                                                                    task.getException());
+                                                        }
+                                                    }
+                                                });
+                                    } else {
+                                        Glide.with(viewHolder.note_picture.getContext())
+                                                .load(note.getPictureUrl())
+                                                .into(viewHolder.note_picture);
+                                    }
+
+                                }
+
+                            } else {
+                                viewHolder.note_content.setVisibility(View.GONE);
+                                viewHolder.person_name.setVisibility(View.GONE);
+                                viewHolder.note_category.setVisibility(View.GONE);
+                                viewHolder.note_time.setVisibility(View.GONE);
+                                viewHolder.note_picture.setVisibility(View.GONE);
+                                viewHolder.note_key.setVisibility(View.GONE);
+                            }
+                            Log.d("before", "before on button listener");
+                           // buttonListener.onButton();
+                        }};
+                    mFirebaseAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+                        @Override
+                        public void onItemRangeInserted(int positionStart, int itemCount) {
+                            super.onItemRangeInserted(positionStart, itemCount);
+                            int friendlyMessageCount = mFirebaseAdapter.getItemCount();
+                            int lastVisiblePosition = mLinearLayoutManager.findLastCompletelyVisibleItemPosition();
+                            // If the recycler view is initially being loaded or the user is at the bottom of the list, scroll
+                            // to the bottom of the list to show the newly added message.
+                            if (lastVisiblePosition == -1 ||
+                                    (positionStart >= (friendlyMessageCount - 1) && lastVisiblePosition == (positionStart - 1))) {
+                                mMessageRecyclerView.scrollToPosition(positionStart);
+                            }
+                            buttonListener.onButton();
+                        }
+                    });
+
+                   //mMessageRecyclerView.setAdapter(mFirebaseAdapter);
+
+
                     return true;
+
+
                 case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                    Log.d("lobster", "lobster button pressed");
+                    mMessageRecyclerView.getRecycledViewPool().clear();
+                    mFirebaseAdapter = new FirebaseRecyclerAdapter<Note, NoteViewHolder>(
+                            Note.class,
+                            R.layout.recycler_note_single_item,
+                            MainActivity.NoteViewHolder.class,
+                            mFirebaseDatabaseReference.child(ROOM_CHILD).child(ROOMKEY_CHILD).child(MESSAGES_CHILD)) {
+
+
+                        @Override
+                        protected void populateViewHolder(final MainActivity.NoteViewHolder viewHolder,
+                                                          Note note, int position) {
+                            if (!note.getPerson_name().equals(StartingActivity.mUsername)) {
+                                viewHolder.note_content.setText(note.getContent());
+                                viewHolder.person_name.setText(note.getPerson_name());
+                                viewHolder.note_category.setText(note.getCategory());
+                                viewHolder.note_time.setText(note.getTime());
+                                viewHolder.note_picture.setVisibility(View.GONE);
+                                viewHolder.note_key.setText(note.getNoteKey());
+                                if (note.getPictureUrl() != null) {
+                                    viewHolder.note_picture.setVisibility(ImageView.VISIBLE);
+                                    String imageUrl = note.getPictureUrl();
+                                    if (imageUrl.startsWith("gs://")) {
+                                        StorageReference storageReference = FirebaseStorage.getInstance()
+                                                .getReferenceFromUrl(imageUrl);
+                                        storageReference.getDownloadUrl().addOnCompleteListener(
+                                                new OnCompleteListener<Uri>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Uri> task) {
+                                                        if (task.isSuccessful()) {
+                                                            String downloadUrl = task.getResult().toString();
+                                                            Glide.with(viewHolder.note_picture.getContext())
+                                                                    .load(downloadUrl)
+                                                                    .into(viewHolder.note_picture);
+                                                        } else {
+                                                            Log.w("TAG", "Getting download url was not successful.",
+                                                                    task.getException());
+                                                        }
+                                                    }
+                                                });
+                                    } else {
+                                        Glide.with(viewHolder.note_picture.getContext())
+                                                .load(note.getPictureUrl())
+                                                .into(viewHolder.note_picture);
+                                    }
+
+                                }
+
+                            } else {
+                                viewHolder.note_content.setVisibility(View.GONE);
+                                viewHolder.person_name.setVisibility(View.GONE);
+                                viewHolder.note_category.setVisibility(View.GONE);
+                                viewHolder.note_time.setVisibility(View.GONE);
+                                viewHolder.note_picture.setVisibility(View.GONE);
+                                viewHolder.note_key.setVisibility(View.GONE);
+                            }
+
+                        }};
+                    mFirebaseAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+                        @Override
+                        public void onItemRangeInserted(int positionStart, int itemCount) {
+                            super.onItemRangeInserted(positionStart, itemCount);
+                            int friendlyMessageCount = mFirebaseAdapter.getItemCount();
+                            int lastVisiblePosition = mLinearLayoutManager.findLastCompletelyVisibleItemPosition();
+                            // If the recycler view is initially being loaded or the user is at the bottom of the list, scroll
+                            // to the bottom of the list to show the newly added message.
+                            if (lastVisiblePosition == -1 ||
+                                    (positionStart >= (friendlyMessageCount - 1) && lastVisiblePosition == (positionStart - 1))) {
+                                mMessageRecyclerView.scrollToPosition(positionStart);
+                            }
+                            Log.d("before", "before on button listener");
+                            buttonListener.onButton();
+                        }
+                    });
+
+
+
+                   // mMessageRecyclerView.setAdapter(mFirebaseAdapter);
                     return true;
             }
+
+
             return false;
         }
 
@@ -156,6 +390,10 @@ public class MainActivity extends AppCompatActivity implements
 
     public interface OnReadyListener {
         public void onReady();
+    }
+
+    public interface OnButtonListener{
+        public void onButton();
     }
 
     @Override
@@ -171,7 +409,7 @@ public class MainActivity extends AppCompatActivity implements
                 .addApi(Auth.GOOGLE_SIGN_IN_API)
                 .build();
 
-        mTextMessage = (TextView) findViewById(R.id.message);
+       //mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -191,6 +429,14 @@ public class MainActivity extends AppCompatActivity implements
         mMessageRecyclerView = (RecyclerView) findViewById(R.id.main_recycler_view);
         mLinearLayoutManager = new LinearLayoutManager(this);
         mLinearLayoutManager.setStackFromEnd(false);
+
+        buttonListener = new OnButtonListener() {
+            @Override
+            public void onButton() {
+                Log.d("insidd", "inside on button listener");
+                mMessageRecyclerView.setAdapter(mFirebaseAdapter);
+            }
+        };
 
         readyListener = new OnReadyListener() {
             @Override
@@ -290,14 +536,8 @@ public class MainActivity extends AppCompatActivity implements
 
                     }
                 });
-     //   ROOMKEY_CHILD = UserListActivity.roomName;
-
-
-
 
         mMessageRecyclerView.setLayoutManager(mLinearLayoutManager);
-
-        //mFirebaseAdapter.notifyDataSetChanged();
 
 
         Toolbar mToolbar = (Toolbar) findViewById(R.id.main_toolbar);
