@@ -78,21 +78,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class StartingActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener {
 
-    public static class MessageViewHolder extends RecyclerView.ViewHolder {
-        TextView messageTextView;
-        ImageView messageImageView;
-        TextView messengerTextView;
-        CircleImageView messengerImageView;
-
-        public MessageViewHolder(View v) {
-            super(v);
-            messageTextView = (TextView) itemView.findViewById(R.id.messageTextView);
-            messageImageView = (ImageView) itemView.findViewById(R.id.messageImageView);
-            messengerTextView = (TextView) itemView.findViewById(R.id.messengerTextView);
-            messengerImageView = (CircleImageView) itemView.findViewById(R.id.messengerImageView);
-        }
-    }
-
     private static final String TAG = "StartingActivity";
     public static final String MESSAGES_CHILD = "messages";
     private static final int REQUEST_INVITE = 1;
@@ -104,9 +89,14 @@ public class StartingActivity extends AppCompatActivity implements
     private static final String LOADING_IMAGE_URL = "https://www.google.com/images/spin-32.gif";
 
     public static String mUsername;
-    private String mPhotoUrl;
-    private SharedPreferences mSharedPreferences;
 
+<<<<<<< HEAD
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
+    public GoogleApiClient mGoogleApiClient;
+    public static String firebaseUserUid;
+
+=======
     private Button mSendButton;
     private RecyclerView mMessageRecyclerView;
     private LinearLayoutManager mLinearLayoutManager;
@@ -122,6 +112,7 @@ public class StartingActivity extends AppCompatActivity implements
 
 
     public DatabaseReference mFirebaseDatabase;
+>>>>>>> master
 
     public void addUser() {
 
@@ -159,8 +150,11 @@ public class StartingActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
+<<<<<<< HEAD
+=======
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReference();
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+>>>>>>> master
         mUsername = ANONYMOUS;
 
         // Initialize Firebase Auth
@@ -209,6 +203,8 @@ public class StartingActivity extends AppCompatActivity implements
     }
 
     @Override
+<<<<<<< HEAD
+=======
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
 
@@ -240,6 +236,7 @@ public class StartingActivity extends AppCompatActivity implements
     }
 
     @Override
+>>>>>>> master
     public void onConnectionFailed(ConnectionResult connectionResult) {
         Log.d(TAG, "onConnectionFailed:" + connectionResult);
     }
