@@ -67,6 +67,8 @@ public class UserListActivity extends AppCompatActivity implements GoogleApiClie
                         roomName =  username.getText() + "_" + StartingActivity.mUsername;
                     }
 
+                    roomName = roomName.replace(".", " ");
+
                     FirebaseDatabase.getInstance().getReference()
                             .child(USER_LIST)
                             .child(StartingActivity.firebaseUserUid)
@@ -127,6 +129,7 @@ public class UserListActivity extends AppCompatActivity implements GoogleApiClie
                             room = user.getRoomKey();
                             Log.d("room", "current room" + room);
                             roomName = room;
+                            roomName = roomName.replace(".", " ");
                             Intent intent = new Intent(UserListActivity.this, MainActivity.class);
                             startActivity(intent);
                             }

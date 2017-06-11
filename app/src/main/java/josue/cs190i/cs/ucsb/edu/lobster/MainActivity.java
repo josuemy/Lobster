@@ -277,6 +277,7 @@ public class MainActivity extends AppCompatActivity implements
                         if (snapshot.hasChild("roomKey")) {
                             User user = snapshot.getValue(User.class);
                             ROOMKEY_CHILD = user.getRoomKey();
+                            ROOMKEY_CHILD = ROOMKEY_CHILD.replace(".", " ");
                             //isReady = true;
                             Log.d("getting", "getting room key" + ROOMKEY_CHILD);
                             readyListener.onReady();
