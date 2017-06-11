@@ -106,9 +106,9 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     public static void showAlertDialog(Context context, final String note_Key){
-        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        AlertDialog.Builder alert = new AlertDialog.Builder(context,R.style.MyDialogTheme);
         alert.setTitle("HEY!");
-        alert.setMessage("Are you sure to delete this note? Your loved one might cry :( ");
+        alert.setMessage("Do you want to delete this note? Your loved one might cry :( ");
         alert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
 
             @Override
@@ -176,6 +176,10 @@ public class MainActivity extends AppCompatActivity implements
                                 viewHolder.note_picture.setVisibility(View.GONE);
                                 viewHolder.note_key.setText(note.getNoteKey());
 
+                                if (position % 2 == 0)
+                                    viewHolder.itemView.setBackgroundColor(getResources().getColor(R.color.even));
+                                else
+                                    viewHolder.itemView.setBackgroundColor(getResources().getColor(R.color.odd));
                             }
 
                             if(note.getPictureUrl() != null){
@@ -503,6 +507,12 @@ public class MainActivity extends AppCompatActivity implements
                             viewHolder.note_time.setText(note.getTime());
                             viewHolder.note_picture.setVisibility(View.GONE);
                             viewHolder.note_key.setText(note.getNoteKey());
+
+                            if (position % 2 == 0)
+                                viewHolder.itemView.setBackgroundColor(getResources().getColor(R.color.even));
+                            else
+                                viewHolder.itemView.setBackgroundColor(getResources().getColor(R.color.odd));
+
                         }
 
                         if(note.getPictureUrl() != null){
