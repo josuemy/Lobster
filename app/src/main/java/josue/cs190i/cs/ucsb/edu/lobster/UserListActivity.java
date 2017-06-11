@@ -12,7 +12,9 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -44,6 +46,10 @@ public class UserListActivity extends AppCompatActivity implements GoogleApiClie
 
     public static String roomName;
     String room;
+
+    // Filtering stuff
+    AutoCompleteTextView autoCompleteTextView;
+    ArrayAdapter<String> namesAdapter;
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
@@ -92,24 +98,20 @@ public class UserListActivity extends AppCompatActivity implements GoogleApiClie
         }
     }
 
-
-    DatabaseReference fireBase;
-    List<String> users = new ArrayList<>();
-    ArrayAdapter adapter;
     DatabaseReference mFirebaseDatabaseReference;
     FirebaseRecyclerAdapter<User, UserViewHolder> mFirebaseAdapter;
     LinearLayoutManager mLinearLayoutManager;
     RecyclerView recyclerView;
+    private ArrayList<String> namesArray = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_list);
 
-
-
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
+
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API)
@@ -131,8 +133,6 @@ public class UserListActivity extends AppCompatActivity implements GoogleApiClie
                             startActivity(intent);
                             }
                         }
-
-
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
 
@@ -142,11 +142,6 @@ public class UserListActivity extends AppCompatActivity implements GoogleApiClie
 
         mLinearLayoutManager = new LinearLayoutManager(this);
         recyclerView = (RecyclerView) findViewById(R.id.users_recycler_view);
-
-
-
-
-
 
         mFirebaseAdapter = new FirebaseRecyclerAdapter<User, UserViewHolder>(
                 User.class,
@@ -187,7 +182,64 @@ public class UserListActivity extends AppCompatActivity implements GoogleApiClie
 
         setSupportActionBar(toolbar);
 
+        // Filtering stuff
+        namesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, new ArrayList<String>());
 
+        autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
+        autoCompleteTextView.setAdapter(namesAdapter);
+
+        getUserList();
+
+
+        autoCompleteTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("clicked", "i've been clicked!!");
+            }
+        });
+
+        // For dropdown menu of auto completes
+        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.e("clicked", "i've been clicked!!");
+
+                // go to the new intent
+
+            }
+        });
+
+
+    }
+
+    private void getUserList() {
+        mFirebaseDatabaseReference.child("users")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        Iterator<DataSnapshot> dataSnapshots = dataSnapshot.getChildren()
+                                .iterator();
+
+                        namesArray.clear();
+                        while (dataSnapshots.hasNext()) {
+                            DataSnapshot dataSnapshotChild = dataSnapshots.next();
+                            User user = dataSnapshotChild.getValue(User.class);
+                            if (!TextUtils.equals(user.name, FirebaseAuth.getInstance().getCurrentUser().getUid())) {
+                                namesArray.add(user.getName());
+                                Log.d("users", "current user " + user.getName());
+                            }
+                        }
+                        Log.d("PRINTING", namesArray.toString());
+                        namesAdapter.clear();
+                        namesAdapter.addAll(namesArray);
+                        namesAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        // Unable to retrieve the users
+                    }
+                });
     }
 
     @Override

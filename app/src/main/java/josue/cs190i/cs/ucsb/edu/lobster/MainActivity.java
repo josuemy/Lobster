@@ -234,9 +234,7 @@ public class MainActivity extends AppCompatActivity implements
                                 .load(note.getPictureUrl())
                                 .into(viewHolder.note_picture);
                     }
-
                 }
-
             }
         };
 

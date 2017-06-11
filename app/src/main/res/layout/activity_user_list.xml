@@ -21,6 +21,16 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:hint="@string/autocompletion_help"
+        android:layout_weight="0.48"
+        android:layout_margin="8dp"
+        android:textSize="14dp" />
+
     <include layout="@layout/content_user_list"
         android:id="@+id/include" />
 
