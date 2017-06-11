@@ -71,4 +71,11 @@
         app:layout_constraintHorizontal_bias="0.036"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp" />
+
+    <TextView
+        android:id="@+id/note_key"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
 </android.support.constraint.ConstraintLayout>

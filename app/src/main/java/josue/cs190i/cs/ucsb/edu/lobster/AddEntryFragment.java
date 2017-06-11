@@ -116,7 +116,8 @@ public class AddEntryFragment extends DialogFragment {
                 if (imageView.getDrawable() != null) {
 
                     new_note.setPictureUrl(LOADING_IMAGE_URL);
-                    mFirebaseDatabaseReference.child(ROOM_CHILD).child(ROOMKEY_CHILD).child(MESSAGES_CHILD).push()
+                    new_note.setNoteKey(mFirebaseDatabaseReference.child(ROOM_CHILD).child(ROOMKEY_CHILD).child(MESSAGES_CHILD).push().getKey());
+                    mFirebaseDatabaseReference.child(ROOM_CHILD).child(ROOMKEY_CHILD).child(MESSAGES_CHILD).child(new_note.getNoteKey())
                             .setValue(new_note, new DatabaseReference.CompletionListener() {
                                 @Override
                                 public void onComplete(DatabaseError databaseError,
@@ -142,8 +143,8 @@ public class AddEntryFragment extends DialogFragment {
                 } else {
                     //  The push() method adds an automatically generated ID to the pushed object's path.
                     //  These IDs are sequential which ensures that the new messages will be added to the end of the list.
-
-                    mFirebaseDatabaseReference.child(ROOM_CHILD).child(ROOMKEY_CHILD).child(MESSAGES_CHILD).push().setValue(new_note);
+                    new_note.setNoteKey(mFirebaseDatabaseReference.child(ROOM_CHILD).child(ROOMKEY_CHILD).child(MESSAGES_CHILD).push().getKey());
+                    mFirebaseDatabaseReference.child(ROOM_CHILD).child(ROOMKEY_CHILD).child(MESSAGES_CHILD).child(new_note.getNoteKey()).setValue(new_note);
                 }
                 dismiss();
             }
@@ -162,7 +163,7 @@ public class AddEntryFragment extends DialogFragment {
                             mDownloadUrl = task.getResult().getDownloadUrl().toString();
 //                            Note new_note = new Note(StartingActivity.mUsername, editText.getText().toString(), currentDateTimeString,
 //                                    null, categoryView.getSelectedItem().toString());
-//                            Note note =
+//                            Note note =\
 //                                    new Note(StartingActivity.mUsername,
 //                                            task.getResult().getDownloadUrl()
 //                                                    .toString());

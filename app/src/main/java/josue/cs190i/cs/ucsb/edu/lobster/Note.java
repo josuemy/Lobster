@@ -12,7 +12,7 @@ public class Note {
     private String content;
     private String time;
     private String category;
-
+    private String noteKey;
     private String pictureUrl;
 
     public Note(String name, String content, String time, String pictureUrl, String category){
@@ -24,6 +24,14 @@ public class Note {
     }
 
     public Note(){}
+
+    public void setNoteKey(String noteKey) {
+        this.noteKey = noteKey;
+    }
+
+    public String getNoteKey() {
+        return noteKey;
+    }
 
     public void setPictureUrl(String pictureUrl) {
         this.pictureUrl = pictureUrl;

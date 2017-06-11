@@ -2,6 +2,7 @@ package josue.cs190i.cs.ucsb.edu.lobster;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -11,6 +12,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -58,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements
     private RecyclerView mMessageRecyclerView;
     private LinearLayoutManager mLinearLayoutManager;
     private static final String ROOM_CHILD = "rooms";
-    private static String ROOMKEY_CHILD;
+    private static String ROOMKEY_CHILD = UserListActivity.roomName;
     private static final String MESSAGES_CHILD = "messages";
 
     @Override
@@ -66,14 +68,13 @@ public class MainActivity extends AppCompatActivity implements
 
     }
 
-
     public static class NoteViewHolder extends RecyclerView.ViewHolder {
         TextView person_name;
         TextView note_content;
         TextView note_time;
         TextView note_category;
+        TextView note_key;
         ImageView note_picture;
-
 
         public NoteViewHolder(View view) {
             super(view);
@@ -82,10 +83,49 @@ public class MainActivity extends AppCompatActivity implements
             note_picture = (ImageView) view.findViewById(R.id.note_picture);
             note_category = (TextView) view.findViewById(R.id.note_category);
             note_time = (TextView) view.findViewById(R.id.note_date_time);
+            note_key = (TextView) view.findViewById(R.id.note_key);
 
+            view.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    showAlertDialog(view.getContext(),note_key.getText().toString());
+                    return true;
+                }
+            });
         }
+
     }
 
+    public static void showAlertDialog(Context context, final String note_Key){
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        alert.setTitle("HEY!");
+        alert.setMessage("Are you sure to delete this note? Your loved one might cry :( ");
+        alert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //do your work here
+                FirebaseDatabase.getInstance().getReference()
+                        .child(ROOM_CHILD)
+                        .child(ROOMKEY_CHILD)
+                        .child(MESSAGES_CHILD)
+                        .child(note_Key)
+                        .setValue(null);
+                dialog.dismiss();
+            }
+        });
+
+        alert.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                dialog.dismiss();
+            }
+        });
+
+        alert.show();
+    }
 
     private TextView mTextMessage;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -115,20 +155,6 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SharedPreferences prefs = getSharedPreferences("preferences", MODE_PRIVATE);
-        String restoredText = prefs.getString("room", "");
-        if(restoredText.equals("")) {
-            SharedPreferences.Editor editor = getSharedPreferences("preferences", MODE_PRIVATE).edit();
-            editor.putString("room", UserListActivity.roomName);
-            editor.commit();
-        }
-
-        String restore = prefs.getString("room", "");
-
-
-        ROOMKEY_CHILD = restore;
-
-
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API)
@@ -152,12 +178,12 @@ public class MainActivity extends AppCompatActivity implements
         //initialize recycler view and linear layout
         mMessageRecyclerView = (RecyclerView) findViewById(R.id.main_recycler_view);
         mLinearLayoutManager = new LinearLayoutManager(this);
-        mLinearLayoutManager.setStackFromEnd(true);
+        mLinearLayoutManager.setStackFromEnd(false);
 
         // Initialize Firebase Auth
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
-        Log.d("ROOM NAME is", ROOMKEY_CHILD);
+//        Log.d("ROOM NAME is", ROOMKEY_CHILD);
 
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
         Log.d("before adapter", "before adapter, after reference");
@@ -179,6 +205,7 @@ public class MainActivity extends AppCompatActivity implements
                     viewHolder.note_category.setText(note.getCategory());
                     viewHolder.note_time.setText(note.getTime());
                     viewHolder.note_picture.setVisibility(View.GONE);
+                    viewHolder.note_key.setText(note.getNoteKey());
                 }
 
                 if(note.getPictureUrl() != null){
@@ -253,10 +280,6 @@ public class MainActivity extends AppCompatActivity implements
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.sign_out_menu:
-                SharedPreferences.Editor editor = getSharedPreferences("preferences", MODE_PRIVATE).edit();
-                editor.putString("room", "");
-                editor.apply();
-                editor.apply();
                 mFirebaseAuth.signOut();
                 Auth.GoogleSignInApi.signOut(mGoogleApiClient);
                 mFirebaseUser = null;

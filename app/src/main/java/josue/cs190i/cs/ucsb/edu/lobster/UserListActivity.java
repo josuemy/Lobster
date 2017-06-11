@@ -91,6 +91,7 @@ public class UserListActivity extends AppCompatActivity implements GoogleApiClie
 
 
                     Intent intent =  new Intent(view.getContext(), MainActivity.class);
+
                     view.getContext().startActivity(intent);
 
                 }
@@ -113,13 +114,6 @@ public class UserListActivity extends AppCompatActivity implements GoogleApiClie
         setContentView(R.layout.activity_user_list);
 
 
-        SharedPreferences prefs = getSharedPreferences("preferences", MODE_PRIVATE);
-        String restoredText = prefs.getString("room", "");
-        Log.d("shared preferences", restoredText);
-        if(!restoredText.equals("")){
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        }
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
