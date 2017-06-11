@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     public static void showAlertDialog(Context context, final String note_Key){
-        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        AlertDialog.Builder alert = new AlertDialog.Builder(context,R.style.MyDialogTheme);
         alert.setTitle("HEY!");
         alert.setMessage("Do you want to delete this note? Your loved one might cry :( ");
         alert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
