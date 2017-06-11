@@ -51,7 +51,8 @@
                     android:scheme="http" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignInActivity" />
+        <activity android:name=".SignInActivity"
+            android:configChanges="orientation|screenSize"/>
 
         <service
             android:name=".MyFirebaseMessagingService"
@@ -71,11 +72,13 @@
         <activity
             android:name=".UserListActivity"
             android:label="Pick Your Lobster"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|screenSize"/>
         <activity
             android:name=".MainActivity"
             android:label="Lobster Notes"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|screenSize"/>
 
         <receiver android:name=".DailyNotificationReceiver" />
 
