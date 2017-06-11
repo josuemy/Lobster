@@ -1,8 +1,8 @@
 <resources>
     <!-- Strings related to menus -->
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Daily Notes</string>
-    <string name="title_notifications">Pictures</string>
+    <string name="title_dashboard">You</string>
+    <string name="title_notifications">Lobster</string>
     <string name="new_lobster">Find A New Lobster</string>
     <string name="app_name">Lobster</string>
     <string name="welcome_msg">Welcome!</string>
