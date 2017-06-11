@@ -1,13 +1,11 @@
 package josue.cs190i.cs.ucsb.edu.lobster;
 
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,30 +15,20 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserListActivity extends AppCompatActivity {
 
@@ -52,6 +40,7 @@ public class UserListActivity extends AppCompatActivity {
 
     public static class UserViewHolder extends RecyclerView.ViewHolder {
         TextView username;
+        Context context;
 
         public UserViewHolder(View v) {
             super(v);
@@ -72,11 +61,21 @@ public class UserListActivity extends AppCompatActivity {
                             .child("roomKey")
                             .setValue(roomName);
 
+                    // Begins notifications for the user
+                    if (context != null) {
+                        DailyNotification notification = new DailyNotification(context);
+                        notification.beginDailyNotifications();
+                    }
+
                     Intent intent =  new Intent(view.getContext(), MainActivity.class);
                     view.getContext().startActivity(intent);
 
                 }
             });
+        }
+
+        public void setContext(Context context) {
+            this.context = context;
         }
     }
 
@@ -116,6 +115,7 @@ public class UserListActivity extends AppCompatActivity {
                 if (user.name != null) {
                     viewHolder.username.setText(user.name);
                     viewHolder.username.setVisibility(ImageView.VISIBLE);
+                    viewHolder.setContext(getApplicationContext());
                 }
             }
 
@@ -170,4 +170,6 @@ public class UserListActivity extends AppCompatActivity {
                     }
                 });
     }
+
+
 }
