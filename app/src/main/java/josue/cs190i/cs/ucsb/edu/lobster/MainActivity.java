@@ -156,6 +156,16 @@ public class MainActivity extends AppCompatActivity implements
                         @Override
                         protected void populateViewHolder(final MainActivity.NoteViewHolder viewHolder,
                                                           Note note, int position) {
+
+                            if (note.getUserPhotoUrl() == null) {
+                                viewHolder.userImageView.setImageDrawable(ContextCompat.getDrawable(MainActivity.this,
+                                        R.drawable.ic_account_circle_black_36dp));
+                            } else {
+                                Glide.with(MainActivity.this)
+                                        .load(note.getUserPhotoUrl())
+                                        .into(viewHolder.userImageView);
+                            }
+
                             if (note.getContent() != null) {
                                 Log.d("populcate content", "viewholder content" + note.getContent());
 
@@ -234,6 +244,16 @@ public class MainActivity extends AppCompatActivity implements
                         @Override
                         protected void populateViewHolder(final MainActivity.NoteViewHolder viewHolder,
                                                           Note note, int position) {
+
+                            if (note.getUserPhotoUrl() == null) {
+                                viewHolder.userImageView.setImageDrawable(ContextCompat.getDrawable(MainActivity.this,
+                                        R.drawable.ic_account_circle_black_36dp));
+                            } else {
+                                Glide.with(MainActivity.this)
+                                        .load(note.getUserPhotoUrl())
+                                        .into(viewHolder.userImageView);
+                            }
+
                             if (note.getPerson_name().equals(StartingActivity.mUsername)) {
                                 viewHolder.note_content.setText(note.getContent());
                                 viewHolder.person_name.setText(note.getPerson_name());
@@ -316,6 +336,14 @@ public class MainActivity extends AppCompatActivity implements
                         @Override
                         protected void populateViewHolder(final MainActivity.NoteViewHolder viewHolder,
                                                           Note note, int position) {
+                            if (note.getUserPhotoUrl() == null) {
+                                viewHolder.userImageView.setImageDrawable(ContextCompat.getDrawable(MainActivity.this,
+                                        R.drawable.ic_account_circle_black_36dp));
+                            } else {
+                                Glide.with(MainActivity.this)
+                                        .load(note.getUserPhotoUrl())
+                                        .into(viewHolder.userImageView);
+                            }
                             if (!note.getPerson_name().equals(StartingActivity.mUsername)) {
                                 viewHolder.note_content.setText(note.getContent());
                                 viewHolder.person_name.setText(note.getPerson_name());
@@ -454,6 +482,7 @@ public class MainActivity extends AppCompatActivity implements
                     @Override
                     protected void populateViewHolder(final MainActivity.NoteViewHolder viewHolder,
                                                       Note note, int position) {
+
                         if (note.getUserPhotoUrl() == null) {
                             viewHolder.userImageView.setImageDrawable(ContextCompat.getDrawable(MainActivity.this,
                                     R.drawable.ic_account_circle_black_36dp));
@@ -595,9 +624,6 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    private void causeCrash() {
-        throw new NullPointerException("Fake null pointer exception");
-    }
 
 
 }
