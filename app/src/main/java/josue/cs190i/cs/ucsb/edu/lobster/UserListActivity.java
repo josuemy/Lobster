@@ -67,6 +67,8 @@ public class UserListActivity extends AppCompatActivity implements GoogleApiClie
                         roomName =  username.getText() + "_" + StartingActivity.mUsername;
                     }
 
+                    roomName = roomName.replace(".", " ");
+
                     FirebaseDatabase.getInstance().getReference()
                             .child(USER_LIST)
                             .child(StartingActivity.firebaseUserUid)
