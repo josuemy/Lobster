@@ -30,7 +30,7 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
     private static final int RC_SIGN_IN = 9001;
     private SignInButton mSignInButton;
 
-    private GoogleApiClient mGoogleApiClient;
+    public GoogleApiClient mGoogleApiClient;
     private FirebaseAuth mFirebaseAuth;
 
     @Override

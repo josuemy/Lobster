@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "185318962883-64ih7n7i9jq2cju324m4o4r1l6imi4e8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "josue.cs190i.cs.ucsb.edu.lobster",
+            "certificate_hash": "2c680212012afd9081d0510664e19f14ffaf10d8"
+          }
+        },
+        {
+          "client_id": "185318962883-5jvh7k2q2tatm5n0je510bt0co8225sv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "josue.cs190i.cs.ucsb.edu.lobster",
+            "certificate_hash": "998c97f0a7eea6c1060985b05f53a53c56ea052e"
+          }
+        },
+        {
           "client_id": "185318962883-oj2os07ltu2fgqbvaosu72rbi642tpiq.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -44,6 +60,37 @@
               "client_type": 3
             }
           ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:185318962883:android:b5d75907de594a2d",
+        "android_client_info": {
+          "package_name": "com.google.firebase.codelab.friendlychat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "185318962883-mugpahr4htfjrcq8hov3ripmvt7bffea.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcfw_R01Ol1Xd7txNpH11DhhUxjS0Wt0o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2
