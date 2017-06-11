@@ -175,6 +175,11 @@ public class MainActivity extends AppCompatActivity implements
                                 viewHolder.note_time.setText(note.getTime());
                                 viewHolder.note_picture.setVisibility(View.GONE);
                                 viewHolder.note_key.setText(note.getNoteKey());
+
+                                if (position % 2 == 0)
+                                    viewHolder.itemView.setBackgroundColor(getResources().getColor(R.color.even));
+                                else
+                                    viewHolder.itemView.setBackgroundColor(getResources().getColor(R.color.odd));
                             }
 
                             if(note.getPictureUrl() != null){
