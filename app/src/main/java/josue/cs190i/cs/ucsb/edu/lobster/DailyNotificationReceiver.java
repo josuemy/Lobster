@@ -29,20 +29,10 @@ public class DailyNotificationReceiver extends BroadcastReceiver {
 
     private void sendNotification(String msg, String text, Context context) {
 
-        Intent notificationIntent = new Intent(context, MainActivity.class);
-        notificationIntent.putExtra(NOTIFICATION_STRING_TAG, msg);
+        Intent notificationIntent = new Intent(context, StartingActivity.class);
+        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-        // building up the pending intent
-        /*
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-        stackBuilder.addParentStack(MainActivity.class);
-        stackBuilder.addNextIntent(notificationIntent);
-        PendingIntent pendingIntent = stackBuilder.getPendingIntent(REMINDER_ID, PendingIntent.FLAG_UPDATE_CURRENT);
-        */
-        Intent intent1 = new Intent(context, MainActivity.class);
-        intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, REMINDER_ID, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, REMINDER_ID, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         // getting the notification manager to send the notification
         NotificationManager notificationManager =

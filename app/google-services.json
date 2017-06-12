@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "185318962883-bbcvkl8ksb5na8o59ee3j69llgnmq6ii.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "josue.cs190i.cs.ucsb.edu.lobster",
+            "certificate_hash": "b6537461806b912a262438389d2497608fd6df08"
+          }
+        },
+        {
+          "client_id": "185318962883-3r892uk46isa7aefhfqekm7ifjk7okv4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "josue.cs190i.cs.ucsb.edu.lobster",
+            "certificate_hash": "16880a2d7f950b19448ba49bf8ee3385f2db04ca"
+          }
+        },
+        {
           "client_id": "185318962883-64ih7n7i9jq2cju324m4o4r1l6imi4e8.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

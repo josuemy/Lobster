@@ -22,12 +22,6 @@ public class DailyNotificationManager {
 
     public void beginDailyNotifications() {
 
-        // calendar might no longer be necessary, unless you want to try having the notification
-        // come at a certain time.
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 20);
-        calendar.set(Calendar.MINUTE, 14);
-
         Intent intent = new Intent(context, DailyNotificationReceiver.class);
 
         pendingIntent = PendingIntent.getBroadcast(context, DailyNotificationReceiver.REMINDER_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -35,14 +29,14 @@ public class DailyNotificationManager {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
         // can set the interval to (one minute * 5) for demo purposes
-        //long one_minute = 60000;
+        long one_minute = 60000;
 
-        // default start time: SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_DAY (one day from right now)
+        // default start time: SystemClock.elapsedRealtime() (right now)
+        // default interval: one day
         // note: can set start time to calendar.getTimeInMillis() if experimenting with a certain time
-        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_DAY, AlarmManager.INTERVAL_DAY, pendingIntent);
+        //alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(), AlarmManager.INTERVAL_DAY, pendingIntent);
+        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(), one_minute * 3, pendingIntent);
 
-        // needed to make notifications stop coming (e.g. if interval is too short, you'll get spammed)
-        //alarmManager.cancel(pendingIntent);
     }
 
     public void turnOffNotifications() {
