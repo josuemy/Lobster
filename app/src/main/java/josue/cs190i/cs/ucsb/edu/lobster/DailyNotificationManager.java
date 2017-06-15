@@ -34,8 +34,8 @@ public class DailyNotificationManager {
         // default start time: SystemClock.elapsedRealtime() (right now)
         // default interval: one day
         // note: can set start time to calendar.getTimeInMillis() if experimenting with a certain time
-        //alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(), AlarmManager.INTERVAL_DAY, pendingIntent);
-        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(), one_minute * 3, pendingIntent);
+        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(), AlarmManager.INTERVAL_DAY, pendingIntent);
+        //alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(), one_minute * 3, pendingIntent);
 
     }
 
